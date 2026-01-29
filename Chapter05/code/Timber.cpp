@@ -50,11 +50,10 @@ int main()
 
 	sf::Vector2u windowSize = window.getSize(); // Assuming 'window' is your sf::RenderWindow
 	sf::Vector2u textureSize = textureBackground.getSize();
+	float xScale = static_cast<float>(windowSize.x) / textureSize.x;
+	float yScale = static_cast<float>(windowSize.y) / textureSize.y;
 
-	spriteBackground.setScale(
-		static_cast<float>(windowSize.x) / textureSize.x,
-		static_cast<float>(windowSize.y) / textureSize.y
-	);
+	spriteBackground.setScale(xScale, yScale);
 
 	// Make a tree sprite
 	Texture textureTree;
@@ -62,10 +61,7 @@ int main()
 	Sprite spriteTree;
 	spriteTree.setTexture(textureTree);
 	spriteTree.setPosition(WINDOW_WIDTH/2, 0);
-	spriteTree.setScale(
-		static_cast<float>(windowSize.x) / textureSize.x,
-		static_cast<float>(windowSize.y) / textureSize.y
-	);
+	spriteTree.setScale(xScale, yScale);
 
 	// Prepare the bee
 	Texture textureBee;
@@ -73,7 +69,7 @@ int main()
 	Sprite spriteBee;
 	spriteBee.setTexture(textureBee);
 	spriteBee.setPosition(0, 400);
-	spriteBee.setScale(static_cast<float>(windowSize.x) / textureSize.x,static_cast<float>(windowSize.y) / textureSize.y);
+	spriteBee.setScale(xScale, yScale);
 
 	// Is the bee currently moving?
 	bool beeActive = false;
@@ -100,9 +96,9 @@ int main()
 	spriteCloud2.setPosition(0, 150);
 	spriteCloud3.setPosition(0, 300);
 
-	spriteCloud1.setScale(static_cast<float>(windowSize.x) / textureSize.x, static_cast<float>(windowSize.y) / textureSize.y);
-	spriteCloud2.setScale(static_cast<float>(windowSize.x) / textureSize.x, static_cast<float>(windowSize.y) / textureSize.y);
-	spriteCloud3.setScale(static_cast<float>(windowSize.x) / textureSize.x, static_cast<float>(windowSize.y) / textureSize.y);
+	spriteCloud1.setScale(xScale, yScale);
+	spriteCloud2.setScale(xScale, yScale);
+	spriteCloud3.setScale(xScale, yScale);
 
 	// Are the clouds currently on screen?
 	bool cloud1Active = false;
@@ -149,8 +145,8 @@ int main()
 	scoreText.setString("Score = 0");
 
 	// Make it really big
-	messageText.setCharacterSize(75);
-	scoreText.setCharacterSize(100);
+	messageText.setCharacterSize(35);
+	scoreText.setCharacterSize(50);
 
 	// Choose a color
 	messageText.setFillColor(Color::White);
@@ -180,6 +176,7 @@ int main()
 		// Set the sprite's origin to dead center
 		// We can then spin it round without changing its position
 		branches[i].setOrigin(220, 20);
+		branches[i].setScale(xScale, yScale);
 	}
 
 	// Prepare the player
@@ -187,8 +184,8 @@ int main()
 	texturePlayer.loadFromFile("graphics/player.png");
 	Sprite spritePlayer;
 	spritePlayer.setTexture(texturePlayer);
-	spritePlayer.setPosition(580, 720);
-
+	spritePlayer.setPosition(WINDOW_WIDTH / 2 - 100, 720*.5);
+	spritePlayer.setScale(xScale, yScale);
 	// The player starts on the left
 	side playerSide = side::LEFT;
 
@@ -197,25 +194,29 @@ int main()
 	textureRIP.loadFromFile("graphics/rip.png");
 	Sprite spriteRIP;
 	spriteRIP.setTexture(textureRIP);
-	spriteRIP.setPosition(600, 860);
+	spriteRIP.setPosition(600 * .5, 860 * .5);
+	spriteRIP.setScale(xScale, yScale);
 
 	// Prepare the axe
 	Texture textureAxe;
 	textureAxe.loadFromFile("graphics/axe.png");
 	Sprite spriteAxe;
 	spriteAxe.setTexture(textureAxe);
-	spriteAxe.setPosition(700, 830);
+	spriteAxe.setPosition(700 * .5, 830 * .5);
+	spriteAxe.setScale(xScale, yScale);
 
 	// Line the axe up with the tree
-	const float AXE_POSITION_LEFT = 700;
-	const float AXE_POSITION_RIGHT = 1075;
+	const float AXE_POSITION_LEFT = 700 * .5;
+	const float AXE_POSITION_RIGHT = 1075 * .5;
 
 	// Prepare the flying log
 	Texture textureLog;
 	textureLog.loadFromFile("graphics/log.png");
 	Sprite spriteLog;
 	spriteLog.setTexture(textureLog);
-	spriteLog.setPosition(810, 720);
+	//spriteLog.setPosition(810 * .5, 720 * .5);
+	spriteLog.setPosition(WINDOW_WIDTH / 2, 720 * .5);
+	spriteLog.setScale(xScale, yScale);
 
 	// Some other useful log related variables
 	bool logActive = false;
@@ -292,7 +293,7 @@ int main()
 			spriteRIP.setPosition(675, 2000);
 
 			// Move the player into position
-			spritePlayer.setPosition(580, 720);
+			spritePlayer.setPosition(WINDOW_WIDTH / 2 - 100, 720 * .5);
 
 			acceptInput = true;
 
@@ -320,13 +321,13 @@ int main()
 
 				
 
-				spritePlayer.setPosition(1200, 720);
+				spritePlayer.setPosition(WINDOW_WIDTH / 2 + 100, 720 * .5);
 
 				// update the branches
 				updateBranches(score);
 
 				// set the log flying to the left
-				spriteLog.setPosition(810, 720);
+				spriteLog.setPosition(810 * .5, 720 * .5);
 				logSpeedX = -5000;
 				logActive = true;
 
@@ -353,13 +354,13 @@ int main()
 					spriteAxe.getPosition().y);
 
 
-				spritePlayer.setPosition(580, 720);
+				spritePlayer.setPosition(580 * .5, 720 * .5);
 
 				// update the branches
 				updateBranches(score);
 
 				// set the log flying
-				spriteLog.setPosition(810, 720);
+				spriteLog.setPosition(810 * .5, 720 * .5);
 				logSpeedX = 5000;
 				logActive = true;
 
