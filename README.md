@@ -1,4 +1,19 @@
 
+# Building/Running SFML on PACE-ICE
+- On pace-ice in an Interactive Desktop run the shell command **setupVSCode.sh**
+- You may need to convert the file to an executable **chmod +x setupVSCode.sh**
+- If the script fails to run you may need to convert it to linux format with the command 
+**dos2unix setupVSCode.sh**
+- Inside VS Code start a terminal create a build folder and cd into it
+- In the build folder run the command **cmake ../ -DCMAKE_BUILD_TYPE=Debug** 
+
+- Then run **cmake --build . -j8**
+
+ 
+  
+   
+    
+
 
 
 # Beginning C++ Game Programming - Second Edition

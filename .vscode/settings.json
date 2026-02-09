@@ -1,0 +1,33 @@
+{
+    // ── CMake Tools Configuration ──────────────────────────
+
+    // Where to place the build output (out-of-source build)
+    "cmake.buildDirectory": "${workspaceFolder}/build/output/bin/",
+
+    // Automatically configure CMake when the workspace opens
+    "cmake.configureOnOpen": true,
+
+    // Default build type
+    "cmake.buildType": "Debug",
+
+    // Generator to use (optional, CMake Tools auto-detects)
+    // "cmake.generator": "Ninja",
+
+    // Path to your CMakeLists.txt (if not in the workspace root)
+    // "cmake.sourceDirectory": "${workspaceFolder}",
+
+    // ── C/C++ Extension Configuration ──────────────────────
+
+    // Let CMake Tools provide IntelliSense configuration
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+
+    // ── Optional: Extra CMake arguments ────────────────────
+    "cmake.configureArgs": [
+        // "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+    ],
+
+    // ── Optional: Environment variables for builds ─────────
+    "cmake.buildEnvironment": {
+        // "MY_VAR": "some_value"
+    }
+}
