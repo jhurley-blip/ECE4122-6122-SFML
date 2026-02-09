@@ -28,7 +28,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/output/bin/Hmk1",
-      "args": [],
+      "args": ["25", "25"],
       "MIMode": "gdb",
       "cwd": "${workspaceFolder}/build/output/bin/"
     }
