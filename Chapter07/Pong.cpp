@@ -30,7 +30,7 @@ int main()
 
 	// A cool retro-style font
 	Font font;
-	font.loadFromFile("fonts/DS-DIGI.ttf");
+	font.loadFromFile("./fonts/DS-DIGI.TTF");
 
 	// Set the font to our retro-style
 	hud.setFont(font);

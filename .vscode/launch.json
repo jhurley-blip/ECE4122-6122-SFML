@@ -10,7 +10,7 @@
         "request": "launch",
         "program": "${workspaceFolder}/build/output/bin/Chap7.exe",
         "args": [],
-        "cwd": "${workspaceFolder}",
+        "cwd": "${workspaceFolder}/build/output/bin/",
         "stopAtEntry": false,
         "console": "integratedTerminal"
     },
