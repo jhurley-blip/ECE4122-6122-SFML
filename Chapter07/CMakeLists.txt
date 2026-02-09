@@ -29,3 +29,5 @@ set_target_properties(
     Chap7 PROPERTIES
     VS_DEBUGGER_WORKING_DIRECTORY "${COMMON_OUTPUT_DIR}/bin"
 )
+
+file(COPY "${PROJECT_SOURCE_DIR}/fonts" DESTINATION "${COMMON_OUTPUT_DIR}/bin/")
